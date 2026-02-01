@@ -1,16 +1,21 @@
-[green_agent]
+# ResearchToolBench Leaderboard Configuration
+
+[green]
+name = "ResearchToolBench"
 agentbeats_id = ""
-env = { API_KEY = "${GITHUB_SECRET_NAME}", LOG_LEVEL = "INFO" }
+image = "ghcr.io/arunshar/researchbench-green:latest"
+port = 8000
+env = {OPENAI_API_KEY = "${OPENAI_API_KEY}" }
 
 [[participants]]
+name = "researcher"
 agentbeats_id = ""
-name = "role_1_name"
-env = {}
-
-[[participants]]
-agentbeats_id = ""
-name = "role_2_name"
-env = {}
+image = ""
+port = 8001
+env = {OPENAI_API_KEY = "${OPENAI_API_KEY}" }
 
 [config]
-# Add your assessment config here
+num_tasks = 4
+num_trials = 2
+pass_threshold = 70
+domains = ["academic", "news", "technical"]
