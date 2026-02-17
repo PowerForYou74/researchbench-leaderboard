@@ -1,8 +1,9 @@
 # CellRepair AI - Research Leaderboard (ResearchToolBench)
 # Fork: PowerForYou74/researchbench-leaderboard
 # Submit: ./submit_to_research_leaderboard.sh
+# Trigger: 18.02.2026
 #
-# GitHub Secrets: OPENAI_API_KEY
+# GitHub Secrets: OPENAI_API_KEY, ANTHROPIC_API_KEY, GEMINI_API_KEY
 
 [green]
 name = "ResearchToolBench"
