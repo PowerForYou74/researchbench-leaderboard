@@ -1,4 +1,8 @@
-# ResearchToolBench Leaderboard Configuration
+# CellRepair AI - Research Leaderboard (ResearchToolBench)
+# Fork: PowerForYou74/researchbench-leaderboard
+# Submit: ./submit_to_research_leaderboard.sh
+#
+# GitHub Secrets: OPENAI_API_KEY
 
 [green]
 name = "ResearchToolBench"
@@ -9,10 +13,10 @@ env = {OPENAI_API_KEY = "${OPENAI_API_KEY}" }
 
 [[participants]]
 name = "researcher"
-agentbeats_id = ""
-image = ""
+agentbeats_id = "PowerForYou74/cellrepair-ai-agentx-lila"
+image = "ghcr.io/powerforyou74/cellrepair-agentx-purple:latest"
 port = 8001
-env = {OPENAI_API_KEY = "${OPENAI_API_KEY}" }
+env = {OPENAI_API_KEY = "${OPENAI_API_KEY}", ANTHROPIC_API_KEY = "${ANTHROPIC_API_KEY}", GEMINI_API_KEY = "${GEMINI_API_KEY}" }
 
 [config]
 num_tasks = 4
