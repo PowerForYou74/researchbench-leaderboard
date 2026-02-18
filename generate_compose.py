@@ -64,11 +64,12 @@ services:
     container_name: green-agent
     environment:{green_env}
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:{green_port}/')"]
+      # Sleep-Delay: researchbench-green braucht ~40s Startup, kein HTTP-Check (Endpoint unbekannt)
+      test: ["CMD", "sh", "-c", "sleep 40 && exit 0"]
       interval: 5s
-      timeout: 3s
-      retries: 10
-      start_period: 30s
+      timeout: 90s
+      retries: 1
+      start_period: 0s
     depends_on:{green_depends}
     networks:
       - agent-network
@@ -98,11 +99,12 @@ PARTICIPANT_TEMPLATE = """  {name}:
     command: ["--host", "0.0.0.0", "--port", "{port}", "--card-url", "http://{name}:{port}"]
     environment:{env}
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:{port}/health')"]
+      # Sleep-Delay: Purple/AG2 braucht ~70s Startup (4892 Zellen laden)
+      test: ["CMD", "sh", "-c", "sleep 70 && exit 0"]
       interval: 5s
-      timeout: 3s
-      retries: 12
-      start_period: 45s
+      timeout: 90s
+      retries: 1
+      start_period: 0s
     networks:
       - agent-network
 """
