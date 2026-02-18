@@ -64,7 +64,7 @@ services:
     container_name: green-agent
     environment:{green_env}
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:{green_port}/.well-known/agent-card.json"]
+      test: ["CMD", "curl", "-f", "http://localhost:{green_port}/"]
       interval: 5s
       timeout: 3s
       retries: 10
