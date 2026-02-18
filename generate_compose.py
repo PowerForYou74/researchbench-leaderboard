@@ -64,7 +64,7 @@ services:
     container_name: green-agent
     environment:{green_env}
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:{green_port}/"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:{green_port}/')"]
       interval: 5s
       timeout: 3s
       retries: 10
@@ -98,7 +98,7 @@ PARTICIPANT_TEMPLATE = """  {name}:
     command: ["--host", "0.0.0.0", "--port", "{port}", "--card-url", "http://{name}:{port}"]
     environment:{env}
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:{port}/health"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:{port}/health')"]
       interval: 5s
       timeout: 3s
       retries: 12
