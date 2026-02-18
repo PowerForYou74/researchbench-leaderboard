@@ -62,7 +62,6 @@ services:
     image: {green_image}
     platform: linux/amd64
     container_name: green-agent
-    command: ["--host", "0.0.0.0", "--port", "{green_port}", "--card-url", "http://green-agent:{green_port}"]
     environment:{green_env}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:{green_port}/.well-known/agent-card.json"]
@@ -179,6 +178,9 @@ def generate_docker_compose(scenario: dict[str, Any]) -> str:
     green = scenario["green_agent"]
     participants = scenario.get("participants", [])
 
+    # researchbench-green uses port 8000 (built-in CMD), participants use 9009
+    green_port = green.get("port", 8000)
+
     participant_names = [p["name"] for p in participants]
 
     participant_services = "\n".join([
@@ -195,7 +197,7 @@ def generate_docker_compose(scenario: dict[str, Any]) -> str:
 
     return COMPOSE_TEMPLATE.format(
         green_image=green["image"],
-        green_port=DEFAULT_PORT,
+        green_port=green_port,
         green_env=format_env_vars(green.get("env", {})),
         green_depends=format_depends_on(participant_names),
         participant_services=participant_services,
@@ -221,8 +223,9 @@ def generate_a2a_scenario(scenario: dict[str, Any]) -> str:
     config_section = scenario.get("config", {})
     config_lines = [tomli_w.dumps({"config": config_section})]
 
+    green_port = green.get("port", 8000)
     return A2A_SCENARIO_TEMPLATE.format(
-        green_port=DEFAULT_PORT,
+        green_port=green_port,
         participants="\n".join(participant_lines),
         config="\n".join(config_lines)
     )
