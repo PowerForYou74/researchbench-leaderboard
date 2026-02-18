@@ -98,11 +98,11 @@ PARTICIPANT_TEMPLATE = """  {name}:
     command: ["--host", "0.0.0.0", "--port", "{port}", "--card-url", "http://{name}:{port}"]
     environment:{env}
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:{port}/.well-known/agent-card.json"]
+      test: ["CMD", "curl", "-f", "http://localhost:{port}/health"]
       interval: 5s
       timeout: 3s
-      retries: 10
-      start_period: 30s
+      retries: 12
+      start_period: 45s
     networks:
       - agent-network
 """

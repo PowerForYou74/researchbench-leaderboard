@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'scenario.toml'
+      - 'generate_compose.py'
 
 jobs:
   run:
