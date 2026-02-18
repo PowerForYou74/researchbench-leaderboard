@@ -5,17 +5,15 @@
 #
 # GitHub Secrets: OPENAI_API_KEY, ANTHROPIC_API_KEY, GEMINI_API_KEY
 
-[green]
+[green_agent]
 name = "ResearchToolBench"
 agentbeats_id = "019c1713-c5d3-7d60-974f-14a790d031bb"
-image = "ghcr.io/arunshar/researchbench-green:latest"
 port = 8000
 env = {OPENAI_API_KEY = "${OPENAI_API_KEY}" }
 
 [[participants]]
 name = "researcher"
 agentbeats_id = "PowerForYou74/cellrepair-ai-agentx-lila"
-image = "ghcr.io/powerforyou74/cellrepair-agentx-purple:latest"
 port = 8001
 env = {OPENAI_API_KEY = "${OPENAI_API_KEY}", ANTHROPIC_API_KEY = "${ANTHROPIC_API_KEY}", GEMINI_API_KEY = "${GEMINI_API_KEY}" }
 
